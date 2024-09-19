@@ -1,0 +1,25 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Step 1: Set up the WebDriver (using Chrome in this case)
+driver = webdriver.Chrome(executable_path='path_to_your_chromedriver')  # Ensure you have downloaded the correct driver
+
+# Step 2: Open Google
+driver.get("https://www.google.com")
+
+# Step 3: Find the search box element by name and enter a search query
+search_box = driver.find_element_by_name("q")  # 'q' is the name attribute of Google's search input field
+search_box.send_keys("Selenium WebDriver")
+
+# Step 4: Automate hitting the Enter key to submit the search
+search_box.send_keys(Keys.RETURN)  # Alternatively, search_box.submit() can be used
+
+# Step 5: Wait for the search results to load (time.sleep used for simplicity, explicit waits are better in real scenarios)
+time.sleep(2)
+
+# Step 6: Capture and print the title of the results page
+print(driver.title)  # This should print something like "Selenium WebDriver - Google Search"
+
+# Step 7: Close the browser
+driver.quit()
